@@ -1,0 +1,222 @@
+openapi: 3.0.1
+info:
+  title: Cosmo Cats Marketplace API
+  description: API for managing cosmic product items in the catalog.
+  version: 1.0.0
+
+servers:
+  - url: /api/v1
+    description: Main API server
+
+paths:
+  /products:
+    post:
+      summary: Create a new product
+      description: Adds a new product to the marketplace catalog.
+      operationId: createProduct
+      requestBody:
+        description: The product data to be added to the catalog
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        '200':
+          description: Product successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '400':
+          description: Validation error due to invalid product data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during product creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    get:
+      summary: Retrieve all products
+      description: Fetches a list of all products available in the marketplace.
+      operationId: getAllProducts
+      responses:
+        '200':
+          description: List of all products retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
+        '500':
+          description: Internal server error while fetching products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /products/{id}:
+    get:
+      summary: Get product details by ID
+      description: Retrieves detailed information for a product using its unique ID.
+      operationId: getProductById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the product
+      responses:
+        '200':
+          description: Product retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '404':
+          description: Product not found with the provided ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error while retrieving product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      summary: Update an existing product or create a new one
+      description: Updates the details of an existing product, or creates a new one if it does not exist.
+      operationId: updateOrCreateProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the product
+      requestBody:
+        description: The updated product data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '201':
+          description: New product successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '400':
+          description: Validation error due to invalid product data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during product update or creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: Delete a product by ID
+      description: Removes a product from the catalog using its unique ID.
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the product
+      responses:
+        '204':
+          description: Product deleted successfully (no content returned)
+        '404':
+          description: Product not found with the provided ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during product deletion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ProductDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier of the product
+          example: 1
+        categoryId:
+          type: integer
+          description: ID of the category to which the product belongs
+          example: 101
+        name:
+          type: string
+          description: Name of the product
+          example: "Cosmic Wand"
+        description:
+          type: string
+          description: Detailed description of the product
+          example: "A wand for interstellar journeys."
+        origin:
+          type: string
+          description: Planet of origin for the product
+          example: "Mars"
+        price:
+          type: number
+          format: float
+          description: Price of the product
+          example: 29.99
+      required:
+        - id
+        - categoryId
+        - name
+        - origin
+        - price
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Type of error
+          example: "Not Found"
+        message:
+          type: string
+          description: Detailed error message
+          example: "Product not found with id: 1"
+        path:
+          type: string
+          description: Endpoint path where the error occurred
+          example: "/api/v1/products/1"
