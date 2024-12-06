@@ -1,4 +1,4 @@
-package com.example.javawebcourse.web.mapper;
+package com.example.javawebcourse.mapper;
 
 import com.example.javawebcourse.domain.order.OrderEntry;
 import com.example.javawebcourse.dto.order.OrderEntryDto;

@@ -1,7 +1,7 @@
-package com.example.javawebcourse.dto.product;
+package com.example.javawebcourse.dto;
 
-import com.example.javawebcourse.dto.validation.ValidCosmicProduct;
-import com.example.javawebcourse.dto.validation.ExtendedValidation;
+import com.example.javawebcourse.validation.ValidCosmicProduct;
+import com.example.javawebcourse.validation.ExtendedValidation;
 import jakarta.validation.GroupSequence;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

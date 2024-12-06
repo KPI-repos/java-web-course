@@ -1,4 +1,4 @@
-package com.example.javawebcourse.service.exception;
+package com.example.javawebcourse.web.exception;
 
 public class DuplicateProductNameException extends RuntimeException{
   public static final String PRODUCT_WITH_NAME_EXIST_MESSAGE = "Product with name %s already exists";

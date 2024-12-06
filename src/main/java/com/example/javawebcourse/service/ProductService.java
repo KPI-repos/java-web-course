@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.example.javawebcourse.domain.product.Product;
-import com.example.javawebcourse.service.exception.DuplicateProductNameException;
-import com.example.javawebcourse.service.exception.ProductNotFoundException;
+import com.example.javawebcourse.domain.Product;
+import com.example.javawebcourse.web.exception.DuplicateProductNameException;
+import com.example.javawebcourse.web.exception.ProductNotFoundException;
 
 @Service
 public class ProductService {

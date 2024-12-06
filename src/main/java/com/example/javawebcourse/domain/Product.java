@@ -1,21 +1,24 @@
-package com.example.javawebcourse.domain.order;
-
-import com.example.javawebcourse.domain.Product;
-import jakarta.persistence.*;
-import lombok.*;
+package com.example.javawebcourse.domain;
 
 import java.util.UUID;
+
+import jakarta.persistence.*;
+import lombok.*;
 
 @Data
 @Builder(toBuilder = true)
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class OrderEntry {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    UUID orderEntryId;
+    UUID id;
     @ManyToOne
-    Product product;
-    int quantity;
+    Category category;
+    String name;
+    String description;
+    String origin;
+    float price;
+
 }

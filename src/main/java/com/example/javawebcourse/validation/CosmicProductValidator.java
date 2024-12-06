@@ -1,4 +1,4 @@
-package com.example.javawebcourse.dto.validation;
+package com.example.javawebcourse.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

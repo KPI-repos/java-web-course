@@ -1,6 +1,6 @@
 package com.example.javawebcourse.web;
 
-import com.example.javawebcourse.domain.product.Product;
+import com.example.javawebcourse.domain.Product;
 import com.example.javawebcourse.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     private final ProductService productService;

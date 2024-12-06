@@ -1,4 +1,4 @@
-package com.example.javawebcourse.dto.category;
+package com.example.javawebcourse.dto;
 
 import java.util.UUID;
 import jakarta.validation.constraints.NotBlank;

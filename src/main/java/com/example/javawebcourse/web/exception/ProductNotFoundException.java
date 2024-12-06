@@ -1,4 +1,4 @@
-package com.example.javawebcourse.service.exception;
+package com.example.javawebcourse.web.exception;
 
 import java.util.UUID;
 
