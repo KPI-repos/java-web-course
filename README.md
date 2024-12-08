@@ -6,7 +6,7 @@
 ## Authors
 
 - [@Yevheniy2020](https://github.com/Yevheniy2020)
-
+- [@aposijl](https://github.com/aposijl)
 
 ## Installation
 
