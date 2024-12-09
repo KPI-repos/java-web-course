@@ -1,6 +1,7 @@
 package com.example.javawebcourse.web;
 
 import com.example.javawebcourse.domain.Product;
+import com.example.javawebcourse.dto.CosmoCatDto;
 import com.example.javawebcourse.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
