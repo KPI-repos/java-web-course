@@ -17,6 +17,9 @@ class ProductServiceTest {
 
     private ProductService productService;
 
+    private static final UUID FIXED_UUID_1 = UUID.fromString("c7ae9b0c-8d6a-4117-bbd1-8f1d76891905");
+    private static final UUID FIXED_UUID_2 = UUID.fromString("2c06ada5-3aeb-487b-8521-72fc9baf1a7a");
+
     private static final Category MOCK_CATEGORY = Category.builder()
             .id(UUID.randomUUID())
             .name("Electronics")
@@ -28,28 +31,30 @@ class ProductServiceTest {
             .build();
 
     private static final Product MOCK_PRODUCT = Product.builder()
-            .id(UUID.randomUUID())
+            .id(FIXED_UUID_1)
             .category(MOCK_CATEGORY)
-            .name("Cosmic Phone")
-            .description("A futuristic phone")
+            .name("Test Product")
+            .description("Test Description")
             .origin("Earth")
-            .price(999.99f)
+            .price(100.0f)
             .build();
 
     private static final Product MOCK_PRODUCT_2 = Product.builder()
-            .id(UUID.randomUUID())
+            .id(FIXED_UUID_2)
             .category(MOCK_CATEGORY_2)
-            .name("Cosmic Shoes")
-            .description("Stylish shoes from space")
+            .name("Test Product 2")
+            .description("Another Test Description")
             .origin("Mars")
-            .price(199.99f)
+            .price(200.0f)
             .build();
+
 
     @BeforeEach
     void setUp() {
         productService = new ProductService();
         productService.createProduct(MOCK_PRODUCT);
     }
+
 
     @Test
     void createProduct_ShouldAddProduct() {
@@ -75,7 +80,7 @@ class ProductServiceTest {
 
     @Test
     void getProductById_ShouldReturnProduct_WhenFound() {
-        Product product = productService.getProductById(MOCK_PRODUCT.getId());
+        Product product = productService.getProductById(FIXED_UUID_1);
 
         assertNotNull(product);
         assertEquals(MOCK_PRODUCT.getName(), product.getName());
@@ -91,18 +96,19 @@ class ProductServiceTest {
     @Test
     void updateProduct_ShouldUpdateProduct_WhenFound() {
         Product updatedProduct = Product.builder()
-                .id(MOCK_PRODUCT.getId())
+                .id(FIXED_UUID_1)
                 .category(MOCK_CATEGORY)
-                .name("Updated Cosmic Phone")
-                .description("Updated description")
+                .name("Updated Test Product")
+                .description("Updated Description")
                 .origin("Venus")
-                .price(1299.99f)
+                .price(150.0f)
                 .build();
 
-        Product result = productService.updateProduct(MOCK_PRODUCT.getId(), updatedProduct);
+        Product result = productService.updateProduct(FIXED_UUID_1, updatedProduct);
 
         assertNotNull(result);
-        assertEquals("Updated Cosmic Phone", result.getName());
+        assertEquals("Updated Test Product", result.getName());
+        assertEquals("Updated Description", result.getDescription());
         assertEquals(1, productService.getAllProducts().size());
     }
 
@@ -123,10 +129,10 @@ class ProductServiceTest {
 
     @Test
     void deleteProduct_ShouldRemoveProduct_WhenFound() {
-        productService.deleteProduct(MOCK_PRODUCT.getId());
+        productService.deleteProduct(FIXED_UUID_1);
 
         assertEquals(0, productService.getAllProducts().size());
-        assertThrows(ProductNotFoundException.class, () -> productService.getProductById(MOCK_PRODUCT.getId()));
+        assertThrows(ProductNotFoundException.class, () -> productService.getProductById(FIXED_UUID_1));
     }
 
     @Test
@@ -136,4 +142,3 @@ class ProductServiceTest {
         assertThrows(ProductNotFoundException.class, () -> productService.deleteProduct(nonExistentId));
     }
 }
-
