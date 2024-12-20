@@ -23,7 +23,6 @@ public class CosmoCatController {
     }
 
     @GetMapping
-    @FeatureToggle(FeatureToggles.COSMO_CATS)
     public List<CosmoCatDto> getAllCosmoCats() {
         return cosmoCatService.getCosmoCats();
     }

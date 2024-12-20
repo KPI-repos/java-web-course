@@ -1,7 +1,12 @@
 package com.example.javawebcourse.api.web;
 
+import com.example.javawebcourse.api.featuretoggle.FeatureToggleExtension;
+import com.example.javawebcourse.config.FeatureToggleProperties;
+import com.example.javawebcourse.featuretoggle.FeatureToggleService;
+import com.example.javawebcourse.service.CosmoCatServiceImpl;
 import com.example.javawebcourse.web.CosmoCatController;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
@@ -13,7 +18,8 @@ import com.example.javawebcourse.featuretoggle.FeatureToggles;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(CosmoCatController.class)
+@ExtendWith(FeatureToggleExtension.class)
+@WebMvcTest(value = {CosmoCatController.class, CosmoCatServiceImpl.class, FeatureToggleService.class, FeatureToggleProperties.class})
 class CosmoCatControllerTest {
 
     @Autowired
