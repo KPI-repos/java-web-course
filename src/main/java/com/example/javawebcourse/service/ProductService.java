@@ -64,7 +64,7 @@ public class ProductService {
 
     private Product buildProduct(Product product) {
         return Product.builder()
-                .id(UUID.randomUUID())
+                .id(product.getId() != null ? product.getId() : UUID.randomUUID())
                 .category(product.getCategory())
                 .name(product.getName())
                 .description(product.getDescription())
@@ -72,4 +72,5 @@ public class ProductService {
                 .price(product.getPrice())
                 .build();
     }
+
 }
