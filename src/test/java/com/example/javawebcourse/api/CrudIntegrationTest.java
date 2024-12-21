@@ -31,8 +31,8 @@ public class CrudIntegrationTest {
     @Container
     private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:latest")
             .withDatabaseName("cosmo_caTS")
-            .withUsername("ronaldo2017")
-            .withPassword("123");
+            .withUsername("test123")
+            .withPassword("test123");
 
     @PersistenceContext
     private EntityManager entityManager;

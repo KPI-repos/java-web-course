@@ -4,9 +4,9 @@ services:
     image: postgres:latest
     container_name: cosmo_cats_db
     environment:
-      POSTGRES_PASSWORD: "123"
+      POSTGRES_PASSWORD: "test123"
       POSTGRES_DB: cosmo_caTS
-      POSTGRES_USERNAME: ronaldo2017
+      POSTGRES_USERNAME: test123
     ports:
       - "5432:5432"
     volumes:
