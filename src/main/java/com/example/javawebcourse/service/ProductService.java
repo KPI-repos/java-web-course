@@ -7,6 +7,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.example.javawebcourse.domain.Product;
@@ -14,6 +15,7 @@ import com.example.javawebcourse.web.exception.DuplicateProductNameException;
 import com.example.javawebcourse.web.exception.ProductNotFoundException;
 
 @Service
+@Transactional
 public class ProductService {
 
     private final Map<UUID, Product> productsById = new ConcurrentHashMap<>();
@@ -72,5 +74,4 @@ public class ProductService {
                 .price(product.getPrice())
                 .build();
     }
-
 }
