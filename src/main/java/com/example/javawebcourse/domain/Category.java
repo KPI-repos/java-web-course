@@ -8,14 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-@Data
 @Builder(toBuilder = true)
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
     String name;
 }
